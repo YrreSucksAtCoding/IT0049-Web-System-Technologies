@@ -1,0 +1,30 @@
+#--------------------------------------------------------------------
+# Paste these into your .env file (TSA1 settings).
+# Find each section, remove the # in front of the line, set the value.
+#--------------------------------------------------------------------
+
+CI_ENVIRONMENT = development
+
+app.baseURL = 'http://localhost:8080/'
+
+database.default.hostname = 127.0.0.1
+database.default.database = tasks_today
+database.default.username = root
+database.default.password = root
+database.default.DBDriver = MySQLi
+database.default.port = 8889
+
+
+# --- Notes ---------------------------------------------------------
+#
+# Use 127.0.0.1, not localhost. With "localhost", PHP ignores the port
+# setting and looks for a unix socket file instead, which fails on MAMP
+# with "No such file or directory". 127.0.0.1 forces a TCP connection
+# so the port below is actually used.
+#
+# MAMP (Mac):   port 8889, username root, password root
+# XAMPP:        port 3306, username root, password blank
+# Homebrew:     port 3306, password is whatever you set
+#
+# Never commit your real .env to GitHub — CodeIgniter's .gitignore
+# already excludes it, which is why this reference file exists.
