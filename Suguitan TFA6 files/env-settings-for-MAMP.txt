@@ -1,0 +1,32 @@
+Paste these over the matching lines in your .env file
+(the project root, next to composer.json).
+
+Laravel ships with DB_CONNECTION=sqlite and the other DB_ lines
+commented out with a #. Remove the # from each one.
+
+------------------------------------------------------------------
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=8889
+DB_DATABASE=tfa6_pos
+DB_USERNAME=root
+DB_PASSWORD=root
+
+SESSION_DRIVER=file
+
+------------------------------------------------------------------
+
+Three things to watch:
+
+1. 127.0.0.1, NOT localhost.
+   With "localhost" PHP ignores DB_PORT and looks for a unix socket,
+   which is the "No such file or directory" error I hit in TFA2.
+
+2. Port 8889 is MAMP's MySQL port, not 3306.
+   Check it in MAMP under Preferences > Ports if it differs.
+
+3. SESSION_DRIVER=file.
+   Laravel's default is "database", which needs a sessions table that
+   comes from the stock migration I am deleting. Using file sessions
+   avoids that entirely, and nothing in this activity needs sessions.
