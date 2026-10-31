@@ -1,0 +1,39 @@
+Paste these over the matching lines in your .env file
+(project root, next to composer.json).
+
+Laravel ships with DB_CONNECTION=sqlite and the other DB_ lines
+commented out with a #. Remove the # from each one.
+
+------------------------------------------------------------------
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=8889
+DB_DATABASE=tsa3_tasks
+DB_USERNAME=root
+DB_PASSWORD=root
+
+SESSION_DRIVER=file
+
+APP_TIMEZONE=Asia/Manila
+
+------------------------------------------------------------------
+
+Four things to watch:
+
+1. 127.0.0.1, NOT localhost.
+   With "localhost" PHP ignores DB_PORT and looks for a unix socket,
+   which is the "No such file or directory" error from TFA2.
+
+2. Port 8889 is MAMP's MySQL port on Mac, not 3306.
+   MAMP on Windows uses 3306. Check MAMP > Preferences > Ports.
+
+3. SESSION_DRIVER=file.
+   Laravel's default is "database", which needs a sessions table from
+   the stock migration being deleted. Nothing here uses sessions.
+
+4. APP_TIMEZONE=Asia/Manila matters for THIS activity specifically.
+   The Welcome page asks "is task_date today?", and the answer depends
+   on which timezone the app thinks it is in. Left on the default UTC,
+   tasks can appear or disappear from the Welcome page several hours
+   early or late.
